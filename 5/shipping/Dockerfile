@@ -1,16 +1,20 @@
 #
 # Build
 #
+# Use a Debian base image
 FROM debian:10 AS build
-RUN dpkg --configure -a
-RUN apt-get --reinstall install ca-certificates-java
-RUN apt-get purge ca-certificates-java openjdk-11-jre-headless
-RUN apt-get install ca-certificates-java openjdk-11-jre-headless
-RUN update-ca-certificates -f
 
+# Configure the system
 RUN dpkg --configure -a
 
-RUN apt-get update && apt-get -y install maven
+# Install required packages including ca-certificates
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        openjdk-8-jdk \
+        ca-certificates \
+        && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/shipping
 
