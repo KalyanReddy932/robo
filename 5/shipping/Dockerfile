@@ -1,16 +1,13 @@
-#
-# Build
-#
 # Use a Debian base image
 FROM debian:10 AS build
 
 # Configure the system
 RUN dpkg --configure -a
 
-# Install required packages including ca-certificates
+# Install required packages including ca-certificates and OpenJDK 11
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        openjdk-8-jdk \
+        openjdk-11-jdk \
         ca-certificates \
         && \
     apt-get clean && \
