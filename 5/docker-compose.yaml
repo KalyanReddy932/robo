@@ -56,8 +56,8 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
-    image: mysql:v1
-    container_name: kalyanreddy932/roboshop:mysql-compose1
+    image: kalyanreddy932/roboshop:mysql-compose1
+    container_name: mysql
   shipping:
     build:
       context: ./shipping
