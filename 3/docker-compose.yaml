@@ -4,17 +4,17 @@ networks:
     driver: bridge
 services:                   #containers we are going to run , we write under services
   web:                      #name of container
-    image: web:v1
+    image: kalyanreddy932/roboshop:web-user-catalogue-mongodb
     container_name: web
     ports:
     - "80:80"
     depends_on:
     - catalogue
   mongodb:
-    image: mongodb:v1
+    image: kalyanreddy932/robotshop:mongodb
     container_name: mongodb
   catalogue:
-    image: catalogue:v1
+    image: kalyanreddy932/robotshop:catalogue
     container_name: catalogue
     depends_on:
     - mongodb
@@ -22,7 +22,7 @@ services:                   #containers we are going to run , we write under ser
     image: redis
     container_name: redis
   user:
-    image: user:v1
+    image: kalyanreddy932/robotshop:user
     container_name: user
     depends_on:
     - mongodb
