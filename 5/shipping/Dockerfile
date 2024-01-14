@@ -2,6 +2,13 @@
 # Build
 #
 FROM debian:10 AS build
+RUN dpkg --configure -a
+RUN apt-get --reinstall install ca-certificates-java
+RUN apt-get purge ca-certificates-java openjdk-11-jre-headless
+RUN apt-get install ca-certificates-java openjdk-11-jre-headless
+RUN update-ca-certificates -f
+
+RUN dpkg --configure -a
 
 RUN apt-get update && apt-get -y install maven
 
