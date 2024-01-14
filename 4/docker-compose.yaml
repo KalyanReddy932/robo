@@ -7,7 +7,7 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
-    image: kalyanreddy932/roboshop:web-user-catalogue-mongodb-compose1
+    image: kalyanreddy932/roboshop:web-cart-user-catalogue-mongodb-compose2
     container_name: web
     ports:
     - "80:80"
