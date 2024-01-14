@@ -2,19 +2,28 @@ version: "3.9"
 networks:
   roboshop:
     driver: bridge
-services:                   #containers we are going to run , we write under services
-  web:                      #name of container
-    image: kalyanreddy932/roboshop:web-user-catalogue-mongodb
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: kalyanreddy932/roboshop:web-user-catalogue-mongodb-compose1
     container_name: web
     ports:
     - "80:80"
     depends_on:
     - catalogue
   mongodb:
-    image: kalyanreddy932/robotshop:mongodb
+    build:
+      context: ./mongo
+      dockerfile: Dockerfile
+    image: kalyanreddy932/robotshop:mongodb-compose1
     container_name: mongodb
   catalogue:
-    image: kalyanreddy932/robotshop:catalogue
+    build:
+      context: ./catalogue
+      dockerfile: Dockerfile
+    image: kalyanreddy932/robotshop:catalogue-compose1
     container_name: catalogue
     depends_on:
     - mongodb
@@ -22,7 +31,10 @@ services:                   #containers we are going to run , we write under ser
     image: redis
     container_name: redis
   user:
-    image: kalyanreddy932/robotshop:user
+    build:
+      context: ./user
+      dockerfile: Dockerfile
+    image: kalyanreddy932/robotshop:user-compose1
     container_name: user
     depends_on:
     - mongodb
